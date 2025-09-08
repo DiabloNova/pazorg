@@ -3,6 +3,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Added local Persian font face declaration */
+@font-face {
+  font-family: "IRAN-Rounded";
+  src: url("/fonts/IRAN-Rounded.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Updated color tokens to match corporate design brief */
   --background: oklch(1 0 0); /* #ffffff */
@@ -76,10 +85,10 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  /* Updated font variable to use Vazirmatn instead of Iran-Kharazmi */
-  --font-vazirmatn: var(--font-vazirmatn);
+  /* Updated font variables to use Google fonts and Persian font */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-roboto);
+  --font-persian: "IRAN-Rounded", Tahoma, Arial, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -127,9 +136,63 @@
   }
 }
 
-/* Updated font class to use Vazirmatn */
-.font-vazirmatn {
-  font-family: var(--font-vazirmatn), sans-serif;
+/* Updated font class to use Iran-Kharazmi from web source */
+.font-iran-kharazmi {
+  font-family: "IRANKharazmi", Tahoma, Arial, sans-serif;
+}
+
+/* Updated global Farsi text styling to use local Persian font */
+[lang="fa"],
+[dir="rtl"] {
+  font-family: "IRAN-Rounded", Tahoma, Arial, sans-serif;
+}
+
+/* Added specific Persian text styling */
+.persian-text {
+  font-family: "IRAN-Rounded", Tahoma, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.persian-text-bold {
+  font-family: "IRAN-Rounded", Tahoma, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+/* Enhanced image optimization styles */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.optimized-image {
+  object-fit: cover;
+  object-position: center;
+  loading: lazy;
+}
+
+/* Enhanced gradient animations for navbar and backgrounds */
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-gradient-bg {
+  background: linear-gradient(
+    -45deg,
+    rgba(220, 38, 38, 0.05),
+    rgba(255, 255, 255, 0.1),
+    rgba(59, 130, 246, 0.05),
+    rgba(245, 158, 11, 0.05)
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
 }
 
 /* Added animated background for Russian/Iranian flag colors */
